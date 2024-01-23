@@ -22,3 +22,16 @@
   {% endfor %}
 </div>
 {% endblock %}
+
+{% for article in articles %}
+  <h2>{{ article.title }}</h2>
+  <p>{{ article.text }}</p>
+  <img src="{{ article.image.url }}" alt="{{ article.title }}" />
+  <p>Tags:</p>
+  <ul>
+    {% for scope in article.scopes.all %}
+      <li>{{ scope.tag.name }}{% if scope.is_main %} (Main){% endif %}</li>
+    {% endfor %}
+  </ul>
+  <p>Published at: {{ article.published_at }}</p>
+{% endfor %}
